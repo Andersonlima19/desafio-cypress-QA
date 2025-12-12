@@ -20,15 +20,23 @@ jobs:
         with:
           node-version: '18'
 
-      # Passo 3: instalar dependências (usando npm install para evitar erros de lock file)
+      # Passo 3: instalar dependências
       - name: Install dependencies
         run: npm install
 
-      # Passo 4: rodar testes Cypress
+      # Passo 4: subir o servidor da aplicação em background
+      - name: Start server
+        run: npm start &
+      
+      # Passo 5: esperar o servidor ficar disponível
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
+
+      # Passo 6: rodar testes Cypress
       - name: Run Cypress tests
         run: npx cypress run
 
-      # Passo 5: salvar relatórios e screenshots se falhar (upload-artifact v4)
+      # Passo 7: salvar relatórios e screenshots se falhar
       - name: Upload Cypress artifacts
         if: failure()
         uses: actions/upload-artifact@v4
