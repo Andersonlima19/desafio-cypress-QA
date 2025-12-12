@@ -1,0 +1,16 @@
+{
+"name": "desafio-cypress-QA",
+"version": "1.0.0",
+"description": "Automação Cypress para desafio técnico",
+"main": "index.js",
+"scripts": {
+"cypress:open": "cypress open",
+"cypress:run": "cypress run",
+"test": "npm run cypress:open"
+},
+"author": "SEU_NOME",
+"license": "MIT",
+"devDependencies": {
+"cypress": "12.17.0"
+}
+}
