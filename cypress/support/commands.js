@@ -1,7 +1,7 @@
 Cypress.Commands.add('login', (username, password) => {
-cy.visit('http://lojaebac.ebaconline.art.br')
+cy.visit('http://lojaebac.ebaconline.art.br/')
 
-cy.visit('http://lojaebac.ebaconline.art.br')
+cy.visit('http://lojaebac.ebaconline.art.br/')
 
 cy.get('span.dropdown-toggle').click() 
 cy.contains('#topmenu a', 'Minha conta').click() 
