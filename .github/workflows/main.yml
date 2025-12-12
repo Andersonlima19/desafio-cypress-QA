@@ -11,32 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Passo 1: pegar o código do repositório
       - uses: actions/checkout@v4
 
-      # Passo 2: configurar Node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # Passo 3: instalar dependências
       - name: Install dependencies
         run: npm install
 
-      # Passo 4: subir o servidor da aplicação em background
-      - name: Start server
-        run: npm start &
-      
-      # Passo 5: esperar o servidor ficar disponível
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000
-
-      # Passo 6: rodar testes Cypress
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npx cypress run --config baseUrl=http://lojaebac.ebaconline.art.br
 
-      # Passo 7: salvar relatórios e screenshots se falhar
       - name: Upload Cypress artifacts
         if: failure()
         uses: actions/upload-artifact@v4
